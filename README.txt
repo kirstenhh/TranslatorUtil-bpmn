@@ -1,3 +1,5 @@
+
+Not recommended for general use (very buggy). Extracts BPMN data into a CSV file for easy translation, and generates a new BPMN file with the translations integrated. 
 Installation:
   Installer python: https://www.howtogeek.com/197947/how-to-install-python-on-windows/
   Passer cette commande sur le command line: (ceci installe des librairies python qui sont utilisées dans l'outil)
