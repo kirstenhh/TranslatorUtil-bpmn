@@ -16,19 +16,18 @@ def stringchecks(text):
   text = text.rstrip()
   if len(text)<1:
     return text
-  print("text: "+text)
-
   if('\t' in text):
     text = text.replace('\t', ' ')
 
   text = text.replace('•', '-')
   text = text.replace('', '-')
-
+  text = text.replace('', '-')
+  text = text.replace('’', "'")
+  text = text.replace(' ', " ")
 
 
   if(text[0] == '-'):
     text = "'"+text
-    print("hyphens: "+text)
   return text
 
 
@@ -54,23 +53,39 @@ for f in os.listdir(dir):
 
               #If is BPMNElement
               if elmt.get('id') and elmt.get('name'):
-                nameDE = getproperty(elmt, 'nameDE')
+                nameDE = getproperty(elmt, 'nameDE').encode('utf-8')
                 docelmts = elmt.select('documentation')
                 documentation = ""
 
                 #in almost all documents, it's just docelmts[0].contents. But some diagrams also have an empty docelmt somewhere.
                 for i in range(len(docelmts)):
                   if docelmts[i] is not None and len(docelmts[i].contents) >0 and docelmts[i].contents[0] is not None:
-                    documentation = stringchecks(docelmts[i].contents[0])
+                    documentation = stringchecks(docelmts[i].contents[0]).encode('utf-8')
+                if documentation =="":
+                  documentation = documentation.encode('utf-8')
 
-
-                documentationDE = stringchecks(getproperty(elmt, 'elementDocumentationDE'))
-                docref = stringchecks(getproperty(elmt, 'referencedDocument'))
-                docrefDE = stringchecks(getproperty(elmt, 'referencedDocumentDE'))
+                documentationDE = stringchecks(getproperty(elmt, 'elementDocumentationDE')).encode('utf-8')
+                docref = stringchecks(getproperty(elmt, 'referencedDocument')).encode('utf-8')
+                docrefDE = stringchecks(getproperty(elmt, 'referencedDocumentDE')).encode('utf-8')
                 name = stringchecks(elmt['name']).encode('utf-8')
 
-                writer.writerow([elmt.get('id'),name.decode('utf-8'), nameDE, documentation, documentationDE, docref, docrefDE])
 
+
+                try:
+
+                  writer.writerow([elmt.get('id'),name.decode('utf-8'), nameDE.decode('utf-8'), documentation.decode('utf-8'), documentationDE.decode('utf-8'), docref.decode('utf-8'), docrefDE.decode('utf-8')])
+                except Exception as e:
+                  print("ERROR")
+                  print(name.decode('utf-8'))
+                  print(nameDE.decode('utf-8'))
+                  print(documentation.decode('utf-8'))
+                  print(documentationDE.decode('utf-8'))
+                  print(docref.decode('utf-8'))
+                  print(docrefDE.decode('utf-8'))
+                  print('-------------------------')
+
+  elif (filepath.endswith(".bpmn")):
+    print('CSV already exists for '+filepath)
 
 
 # with open('csvout.csv', 'w') as csvfile: #filepath+".csv", "w") as csvfile:
