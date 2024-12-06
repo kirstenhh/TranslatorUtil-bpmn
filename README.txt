@@ -1,11 +1,11 @@
 
-Not recommended for general use (very buggy). Extracts BPMN data into a CSV file for easy translation, and generates a new BPMN file with the translations integrated. 
+Not recommended for general use (very buggy). Extracts BPMN data into a CSV file for easy translation, and generates a new BPMN file with the translations integrated.
 Installation:
   Installer python: https://www.howtogeek.com/197947/how-to-install-python-on-windows/
   Passer cette commande sur le command line: (ceci installe des librairies python qui sont utilisées dans l'outil)
     pip install bs4 lxml
 
-Utilisation: 
+Utilisation:
 
   1. Mettre tous les diagrammes BPMN dans le même fichier que "MakeCSV1.py" et "MakeBPMN2.py".
   2. Double-clicker sur "MakeCSV1.py". Ceci génère un fichier CSV pour chaque diagramme.
@@ -24,9 +24,9 @@ Installation:
 
 Using the script:
   1. Put all the BPMN diagrams in the same folder as this program.
-  2. Run "MakeCSV1.py". You can either double-click on it, or go to the folder in your command line and run "python MakeCSV1.py".
+  2. Run "CSVMaker.py". You can either double-click on it, or go to the folder in your command line and run "python MakeCSV1.py".
   3. You will now have CSV documents for each bpmn diagram. Edit those (usually with Excel or something similar) to include your translations. If your editor asks you what encoding to use, choose "UTF-8".  WARNING: if you edit the existing fields, your modifications will also end up in the final diagram.
-  4. When you have finished translating, run "MakeBPMN2.py", again by double-clicking on it or running "python MakeBPMN2.py".
+  4. When you have finished translating, run "BPMNDiagramMaker.py", again by double-clicking on it or running "python MakeBPMN2.py".
   5. Your new diagrams should now be in the "output" folder.
 
 If there's trouble, contact me at: kirsten.hauck@processcentric.ch
